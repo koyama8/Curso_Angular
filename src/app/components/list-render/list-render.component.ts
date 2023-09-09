@@ -13,12 +13,7 @@ export class ListRenderComponent implements OnInit {
  
    animals: Animal[] = [];
   
-   animal: Animal = {
-     name:'Teste',
-     type:'Alguma coisa',
-     age: 10,
-   };
-
+   
   constructor(private listService: ListService){
     this.getAnimals()
   }
@@ -31,8 +26,8 @@ export class ListRenderComponent implements OnInit {
   }
 
   removeAnimal(animal: Animal){
-    console.log('Removendo animal ...')
-    this.animals = this.listService.remove(this.animals,animal);
+    this.animals = this.animals.filter((a) => animal.name !== a.name);
+    this.listService.remove(animal.id).subscribe();
   }
 
   getAnimals(): void{
